@@ -1,70 +1,77 @@
-let estimateBtn = document.getElementById('estimateCost');
-
 var extraPerDay = 0;
-let numberOfDays = document.getElementById('numDays');
+var carRental = 0;
+
+
+let estimateBtn = document.getElementById('estimateCost');
+estimateBtn.addEventListener('click', getEstimate);
 
 function getCarRental() {
+    let numberOfDays = document.getElementById('numDays').value;
     numberOfDays = Number(numberOfDays);
-    let carRental = 29.99 * numberOfDays;
+    carRental = 29.99 * numberOfDays;
     carRentalAmount = document.getElementById('carRentalAmount');
+    console.log(carRental);
     carRentalAmount.innerText = carRental;
 }
 
 function getOptions() {
     let options = document.getElementById('options')
-    
+    let numberOfDays = document.getElementById('numDays').value;
+    numberOfDays = Number(numberOfDays);
+
     let isTollTag = document.getElementById('tollTag').checked;
 
     if (isTollTag) {
-        extraPerDay += 3.95;
-        console.log(extraPerDay);
+        extraPerDay = extraPerDay + (3.95 * numberOfDays);
+        console.log(extraPerDay.toFixed(2));
     }
 
     let gps = document.getElementById('gps').checked;
 
     if (gps) {
-        extraPerDay += 4.95;
-        console.log(extraPerDay);
+        extraPerDay += 4.95 * numberOfDays;
+        console.log(extraPerDay.toFixed(2));
     }
 
     let roadside = document.getElementById('roadside').checked;
 
     if (roadside) {
-        extraPerDay += 2.95;
-        console.log(extraPerDay);
+        extraPerDay += 2.95 * numberOfDays;
+        console.log(extraPerDay.toFixed(2));
     }
 
-    options.innerText = extraPerDay;
+    options.innerText = extraPerDay.toFixed(2);
 }
 
-function underAgeCharge(){
+function underAgeCharge() {
     let underAge = document.getElementById('underAgeAmount');
-    let underAgeChecked = document.getElementById('underAge');
-    if(underAgeChecked.checked){
+    let underAgeChecked = document.getElementById('yes');
+    if (underAgeChecked.checked) {
         extraPerDay = (extraPerDay * .3) + extraPerDay;
-        underAge.innerText = extraPerDay;
-    } else{
+        underAge.innerText = `$${extraPerDay.toFixed(2)}`;
+    } else {
         underAge.innerText = 0;
     }
 }
 
-function getTotal(total){
-    let total = document.getElementById('total');
-    total = Number(total) + getCarRental() + underAgeCharge() + getOptions();
-    total.innerText = total;
+function getTotal() {
+    let totalInput = document.getElementById('total');
+    let totalAmount = extraPerDay + carRental;
+    console.log(totalAmount.toFixed(2));
+    totalInput.innerText = `$${totalAmount.toFixed(2)}`;
 }
 
 
 function getEstimate() {
-    getCarRental();
-    getOptions();
-    underAgeCharge();
-    getTotal(extraPerDay);
+    let numberOfDays = document.getElementById('numDays').value;
+    numberOfDays = Number(numberOfDays);
+    if (numberOfDays == 0 || isNaN(numberOfDays)) {
+        alert('Invalid input. Number of days has to be a number greater than 0!');
+    } else {
+        getCarRental();
+        getOptions();
+        underAgeCharge();
+        getTotal();
+    }
 }
-
-window.onload = function() {
-    estimateBtn.addEventListener('click', getEstimate);
-}
-
-
 

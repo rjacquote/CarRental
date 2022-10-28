@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Rental Estimator</title>
     <style>
-        fieldset{
+        fieldset {
             margin: auto;
             width: 400px;
             height: 490px;
 
         }
-        body{
+
+        body {
             padding-top: 50px;
         }
     </style>
+    
 </head>
+
 <body>
     <fieldset>
-        <form >
+        <form>
             <h1>ACME Car Rental</h1>
             <label for="pickup">Pickup date: </label>
             <input type="date" id="pickup"><br>
@@ -28,24 +32,24 @@
 
             <p>Options:</p>
 
-            <input type="checkbox" name="tollTag" id="tollTag" value="tollTag">Electronic Toll Tag ($3.95/day)<br>
+            <input type="checkbox" name="tollTag" id="tollTag">Electronic Toll Tag ($3.95/day)<br>
             <input type="checkbox" name="gps" id="gps">GPS ($2.95/day)<br>
             <input type="checkbox" name="roadside" id="roadside">Roadside Assistance ($2.95/day)<br>
 
-            <p>Under 25</p>
-            <input type="radio" name="underAge" id="underAge" value="underAge">No 
-            <input type="radio" name="underAge" id="underAge" value="underAge">Yes
+            <p>Under 25:</p>
+            <input type="radio" name="underAge" id="no">No
+            <input type="radio" name="underAge" id="yes">Yes
             <br><br>
-            <input type="button" id= "estimateCost" value="Estimate Total Cost"><br><br>
+            <button type="button" id="estimateCost">Estimate Total Cost</button><br><br>
 
-            <label for="carRentalAmount">Car rental: </label><output id="carRentalAmount"></output><br>
-            <label for="carRentalAmount">Options: </label> <output id="options"></output><br>
-            <label for="carRentalAmount">Under 25 surcharge: </label><output id="underAgeAmount"></output><br><br>
+            <label for="carRentalAmount">Car rental: </label><output id="carRentalAmount">xxx</output><br>
+            <label for="carRentalAmount">Options: </label><output id="options">xxx</output><br>
+            <label for="carRentalAmount">Under 25 surcharge: </label><output id="underAgeAmount">xxx</output><br><br>
             <label for="carRentalAmount">Total due: </label><output id="total"></output><br>
         </form>
     </fieldset>
 
-    <script src="rental-estimator.js"></script>
+    <script src="rental-estimator.js" ></script>
 </body>
-</html>
 
+</html>
